@@ -1,0 +1,401 @@
+<!doctype html>
+<html lang="en" class="dark">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>profm0r14rty — hacker-core</title>
+<meta name="description" content="Forensic science student, offensive security, CTF player. Breaking things by night, grinding toward OSCP one CTF at a time." />
+<meta name="theme-color" content="#0a0505" />
+<meta property="og:title" content="profm0r14rty — hacker-core" />
+<meta property="og:description" content="Forensic science by day, breaking things by night — grinding toward OSCP one CTF at a time." />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMiAzMiI+PHJlY3Qgd2lkdGg9IjMyIiBoZWlnaHQ9IjMyIiByeD0iNiIgZmlsbD0iIzBhMDUwNSIvPjx0ZXh0IHg9IjE2IiB5PSIyMyIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9Im1vbm9zcGFjZSIgZm9udC1zaXplPSIyMiIgZm9udC13ZWlnaHQ9ImJvbGQiIGZpbGw9IiNjNzNjMjgiPiZndDs8L3RleHQ+PC9zdmc+" type="image/svg+xml" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&display=swap" />
+<style>
+  :root{
+    --background:oklch(0.14 0.01 20);
+    --foreground:oklch(0.94 0.02 20);
+    --card:oklch(0.17 0.015 20);
+    --primary:oklch(0.58 0.22 25);
+    --primary-foreground:oklch(0.98 0.005 20);
+    --secondary:oklch(0.22 0.02 20);
+    --muted-foreground:oklch(0.6 0.03 20);
+    --border:oklch(0.28 0.04 25 / 60%);
+    --blood:oklch(0.52 0.24 25);
+    --glow:oklch(0.68 0.25 25);
+    --mono:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+  }
+  *{box-sizing:border-box;border-color:var(--border);}
+  html,body{margin:0;padding:0;background:var(--background);color:var(--foreground);font-family:var(--mono);-webkit-font-smoothing:antialiased;}
+  a{color:inherit;text-decoration:none;}
+  ::selection{background:var(--blood);color:var(--primary-foreground);}
+  h1,h2,p{margin:0;}
+  .wrap{position:relative;min-height:100vh;overflow:hidden;}
+  .container{max-width:64rem;margin:0 auto;padding:0 1.5rem;}
+  .bg-grid{position:absolute;inset:0;pointer-events:none;
+    background-image:
+      linear-gradient(to right, color-mix(in oklab, var(--blood) 12%, transparent) 1px, transparent 1px),
+      linear-gradient(to bottom, color-mix(in oklab, var(--blood) 12%, transparent) 1px, transparent 1px);
+    background-size:32px 32px;
+    -webkit-mask-image:radial-gradient(ellipse at center, black 40%, transparent 85%);
+            mask-image:radial-gradient(ellipse at center, black 40%, transparent 85%);}
+  .bg-scanlines{position:absolute;inset:0;pointer-events:none;opacity:.4;
+    background-image:repeating-linear-gradient(to bottom,transparent 0,transparent 2px,color-mix(in oklab,var(--blood) 6%,transparent) 3px,transparent 4px);}
+  .top-glow{position:absolute;inset:0 0 auto 0;height:6rem;pointer-events:none;
+    background:linear-gradient(to bottom,color-mix(in oklab,var(--primary) 10%,transparent),transparent);}
+  .scan-wrap{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:0;}
+  .scan-bar{height:6rem;width:100%;animation:scan 6s linear infinite;
+    background:linear-gradient(to bottom,transparent,color-mix(in oklab,var(--primary) 10%,transparent),transparent);}
+  canvas.matrix{position:fixed;inset:0;z-index:-1;opacity:.18;pointer-events:none;}
+  header.bar{position:relative;z-index:10;display:flex;align-items:center;justify-content:space-between;padding:1.25rem 1.5rem;max-width:64rem;margin:0 auto;font-size:.75rem;color:var(--muted-foreground);}
+  .dot{display:inline-block;width:.5rem;height:.5rem;border-radius:999px;background:var(--primary);}
+  .flicker{animation:flicker 4s infinite;}
+  .kicker{font-size:.75rem;letter-spacing:.35em;text-transform:uppercase;color:var(--primary);}
+  .kicker2{font-size:.75rem;letter-spacing:.3em;text-transform:uppercase;color:var(--primary);margin-bottom:1.5rem;display:block;}
+  h1.name{font-size:clamp(2.75rem,7vw,4.5rem);font-weight:700;line-height:1;letter-spacing:-.02em;margin-top:1.25rem;}
+  .glow{text-shadow:0 0 8px color-mix(in oklab,var(--glow) 50%,transparent),0 0 24px color-mix(in oklab,var(--blood) 30%,transparent);}
+  .glitch{position:relative;display:inline-block;}
+  .glitch .a,.glitch .b{position:absolute;inset:0;mix-blend-mode:screen;}
+  .glitch .a{color:color-mix(in oklab,var(--primary) 70%,transparent);animation:glitch-x 2.4s infinite;}
+  .glitch .b{color:color-mix(in oklab,var(--glow) 40%,transparent);transform:translateX(-1px);}
+  .glitch .r{position:relative;color:var(--foreground);}
+  .role{margin-top:1rem;max-width:36rem;font-size:.95rem;color:var(--muted-foreground);}
+  main{position:relative;z-index:10;padding-bottom:6rem;}
+  .hero{padding-top:4rem;}
+  @media(min-width:768px){.hero{padding-top:6rem;}}
+  .float{animation:float-up .6s ease-out both;}
+  .scroll-reveal{opacity:0;transform:translateY(12px);}
+  .term{margin-top:3.5rem;border:1px solid var(--border);background:color-mix(in oklab,var(--card) 70%,transparent);backdrop-filter:blur(6px);overflow:hidden;
+    box-shadow:0 0 0 1px color-mix(in oklab,var(--blood) 60%,transparent),0 0 24px -6px color-mix(in oklab,var(--blood) 50%,transparent);}
+  .term-bar{display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border);background:color-mix(in oklab,var(--secondary) 60%,transparent);padding:.5rem .75rem;font-size:.625rem;letter-spacing:.25em;text-transform:uppercase;color:var(--muted-foreground);}
+  .lights{display:flex;gap:.375rem;align-items:center;}
+  .lights span{width:.625rem;height:.625rem;border-radius:999px;}
+  .l1{background:color-mix(in oklab,var(--primary) 80%,transparent);}
+  .l2{background:color-mix(in oklab,var(--primary) 40%,transparent);}
+  .l3{background:color-mix(in oklab,var(--primary) 20%,transparent);}
+  .rec{color:var(--primary);}
+  pre.term-body{margin:0;padding:1.5rem 1.25rem;font-size:.875rem;line-height:1.65;white-space:pre-wrap;color:color-mix(in oklab,var(--foreground) 90%,transparent);font-family:var(--mono);}
+  .prompt{color:var(--primary);}
+  .dim{color:var(--muted-foreground);}
+  .caret{display:inline-block;width:.5rem;height:1rem;background:var(--primary);vertical-align:middle;margin-left:2px;animation:caret 1s steps(1) infinite;}
+  section.block{margin-top:4rem;}
+  .grid-links{display:grid;grid-template-columns:1fr;gap:1px;background:var(--border);}
+  @media(min-width:640px){.grid-links{grid-template-columns:repeat(2,1fr);}}
+  @media(min-width:1024px){.grid-links{grid-template-columns:repeat(3,1fr);}}
+  .tile{display:block;background:var(--background);padding:1.5rem 1.25rem;position:relative;transition:background .2s;overflow:hidden;}
+  .tile:hover{background:var(--card);}
+  .tile .row{display:flex;align-items:flex-start;justify-content:space-between;}
+  .tile .num{font-size:.625rem;letter-spacing:.3em;text-transform:uppercase;color:var(--muted-foreground);}
+  .tile .label{margin-top:.5rem;font-size:1.125rem;font-weight:500;transition:color .2s;}
+  .tile:hover .label{color:var(--primary);}
+  .tile .user{margin-top:.25rem;font-size:.75rem;color:var(--muted-foreground);}
+  .tile .arrow{color:var(--primary);opacity:0;transform:translateX(0);transition:all .2s;}
+  .tile:hover .arrow{opacity:1;transform:translateX(4px);}
+  .tile .cmd{margin-top:1.5rem;font-size:.6875rem;color:color-mix(in oklab,var(--muted-foreground) 70%,transparent);}
+  .tile .under{position:absolute;left:0;right:0;bottom:0;height:1px;background:var(--primary);transform:scaleX(0);transform-origin:left;transition:transform .5s;}
+  .tile:hover .under{transform:scaleX(1);}
+  .stack{display:flex;flex-wrap:wrap;gap:.5rem;}
+  .chip{border:1px solid var(--border);background:color-mix(in oklab,var(--card) 60%,transparent);padding:.25rem .75rem;font-size:.75rem;color:var(--muted-foreground);transition:all .2s;}
+  .chip:hover{border-color:var(--primary);color:var(--primary);}
+  footer{margin-top:6rem;padding-top:1.5rem;border-top:1px solid var(--border);display:flex;flex-direction:column;gap:.75rem;font-size:.6875rem;color:var(--muted-foreground);}
+  @media(min-width:768px){footer{flex-direction:row;align-items:center;justify-content:space-between;}}
+  .signal{display:inline-flex;align-items:center;gap:.5rem;}
+  .signal .d{width:.375rem;height:.375rem;border-radius:999px;background:var(--primary);animation:blink 1s steps(1) infinite;}
+  .tab{font-variant-numeric:tabular-nums;}
+
+  @keyframes blink{0%,49%{opacity:1}50%,100%{opacity:0}}
+  @keyframes flicker{0%,100%{opacity:1}42%{opacity:.85}43%{opacity:.4}44%{opacity:1}70%{opacity:.9}}
+  @keyframes glitch-x{0%,100%{transform:translate(0,0)}20%{transform:translate(-1px,0)}40%{transform:translate(1px,-1px)}60%{transform:translate(-1px,1px)}80%{transform:translate(1px,0)}}
+  @keyframes scan{0%{transform:translateY(-100%)}100%{transform:translateY(100%)}}
+  @keyframes float-up{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+  @keyframes caret{0%,50%{opacity:1}51%,100%{opacity:0}}
+  .cursor-glow{position:fixed;width:20rem;height:20rem;border-radius:50%;pointer-events:none;z-index:1;opacity:0;
+    background:radial-gradient(circle,color-mix(in oklab,var(--glow) 12%,transparent),transparent 70%);
+    transform:translate(-50%,-50%);will-change:transform;filter:blur(40px);}
+  @media(prefers-reduced-motion:reduce){
+    .scroll-reveal{opacity:1;transform:none;animation:none !important;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <canvas class="matrix" id="matrix" aria-hidden="true"></canvas>
+  <div class="bg-grid"></div>
+  <div class="bg-scanlines"></div>
+  <div class="top-glow"></div>
+  <div class="scan-wrap"><div class="scan-bar"></div></div>
+
+  <header class="bar">
+    <div style="display:flex;align-items:center;gap:.5rem;">
+      <span class="dot flicker"></span>
+      <span style="letter-spacing:.25em;text-transform:uppercase;" id="handle-top">handle@portfolio</span>
+    </div>
+    <div style="display:none;gap:1.5rem;" class="meta">
+      <span>uptime: <span class="tab" id="clock">--</span></span>
+      <span>node: <span style="color:var(--primary)">online</span></span>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <p class="kicker float">&gt; init personal_site --mode=hacker</p>
+      <h1 class="name glow"><span class="glitch" id="name">
+        <span class="a" aria-hidden="true"></span>
+        <span class="b" aria-hidden="true"></span>
+        <span class="r"></span>
+      </span></h1>
+      <p class="role" id="real-name"></p>
+      <p class="role" id="college" style="font-size:.875rem;margin-top:.25rem"></p>
+      <p class="role"><span style="color:var(--primary)">//</span> <span id="role"></span> &nbsp;·&nbsp; <span id="location"></span></p>
+    </section>
+
+    <section class="scroll-reveal">
+      <div class="term">
+        <div class="term-bar">
+          <div class="lights"><span class="l1"></span><span class="l2"></span><span class="l3"></span></div>
+          <span id="term-title">zsh — 80x24</span>
+          <span class="rec">rec ●</span>
+        </div>
+        <pre class="term-body" id="term-body"></pre>
+      </div>
+    </section>
+
+    <section class="block">
+      <h2 class="kicker2">── ./sockets</h2>
+      <div class="grid-links" id="socials"></div>
+    </section>
+
+    <section class="block">
+      <h2 class="kicker2">── ./stack</h2>
+      <div class="stack" id="stack"></div>
+    </section>
+
+    <section class="block">
+      <h2 class="kicker2">── ./os</h2>
+      <div id="os-list"></div>
+    </section>
+
+    <footer>
+      <p><span style="color:var(--primary)">$</span> exit 0 &nbsp;·&nbsp; built with too much caffeine</p>
+      <p class="signal"><span class="d"></span><span>signal green</span></p>
+    </footer>
+  </main>
+</div>
+
+<style>@media(min-width:768px){.meta{display:flex !important;}}</style>
+
+<script>
+// ── EDIT ME ─────────────────────────────────────────────────────────────
+const IDENTITY = {
+  handle: "profm0r14rty",
+  name: "profm0r14rty",
+  realName: "Pratyay Mukherjee",
+  college: "NFSU, Agartala",
+  role: "forensic science student · offensive security · CTF player · coder",
+  location: "somewhere on the grid",
+  bio: "Forensic Science student @ NFSU · pivoting hard into cybersecurity. I build tools at the intersection of digital forensics, cryptography, and the terminal. Self-hosted. Privacy-first. Anti-bloat.",
+};
+const SOCIALS = [
+  { label: "GitHub",    href: "https://github.com/profm0r14rty",
+    user: "profm0r14rty", cmd: "git remote -v" },
+  { label: "LinkedIn",  href: "https://www.linkedin.com/in/pratyay-mukherjee-734893235/",
+    user: "Pratyay Mukherjee", cmd: "curl linkedin.com" },
+  { label: "X",         href: "https://x.com/PratyayM_03",
+    user: "@PratyayM_03", cmd: "ssh x.com" },
+  { label: "Email",     href: "mailto:prof.m0r14rty@proton.me",
+    user: "prof.m0r14rty@proton.me", cmd: "mail -s hi" },
+  { label: "Instagram", href: "https://www.instagram.com/somehow_somewhere_existing/",
+    user: "@somehow_somewhere_existing", cmd: "wget /media" },
+  { label: "Tumblr",    href: "https://www.tumblr.com/profm0r14rty",
+    user: "profm0r14rty", cmd: "tail -f ./blog" },
+];
+const STACK = ["linux","bash","python","html","css","javascript","c","neovim","full stack","php","cyber security","burp suite","nmap"];
+const OS_LIST = [
+  { context: "daily driver",        value: "CachyOS + Hyprland" },
+  { context: "ctf / cybersecurity",  value: "Kali Linux + i3wm" },
+  { context: "need to disappear",    value: "Tails OS" },
+];
+// ────────────────────────────────────────────────────────────────────────
+
+// Fill identity
+document.getElementById("handle-top").textContent = IDENTITY.handle + "@portfolio";
+document.getElementById("role").textContent = IDENTITY.role;
+document.getElementById("location").textContent = IDENTITY.location;
+document.getElementById("term-title").textContent = "zsh — 80x24 — /~/" + IDENTITY.handle;
+const nameEl = document.getElementById("name");
+nameEl.querySelector(".a").textContent = IDENTITY.name;
+nameEl.querySelector(".b").textContent = IDENTITY.name;
+nameEl.querySelector(".r").textContent = IDENTITY.name;
+document.getElementById("real-name").textContent = IDENTITY.realName;
+document.getElementById("college").textContent = IDENTITY.college;
+
+// Socials
+const socialsEl = document.getElementById("socials");
+SOCIALS.forEach((s, i) => {
+  const a = document.createElement("a");
+  a.className = "tile scroll-reveal";
+  a.href = s.href; a.target = "_blank"; a.rel = "noreferrer";
+  a.style.animationDelay = (0.05 * i) + "s";
+  a.innerHTML = `
+    <div class="row">
+      <div>
+        <p class="num">${String(i+1).padStart(2,"0")}</p>
+        <p class="label">${s.label.toLowerCase()}</p>
+        <p class="user">${s.user}</p>
+      </div>
+      <span class="arrow">↗</span>
+    </div>
+    <p class="cmd"><span style="color:var(--primary)">$</span> ${s.cmd}</p>
+    <span class="under"></span>`;
+  socialsEl.appendChild(a);
+});
+
+// Stack
+const stackEl = document.getElementById("stack");
+STACK.forEach((s, i) => {
+  const el = document.createElement("span");
+  el.className = "chip scroll-reveal"; el.textContent = s;
+  el.style.animationDelay = (0.04 * i) + "s";
+  stackEl.appendChild(el);
+});
+
+// OS list
+const osListEl = document.getElementById("os-list");
+OS_LIST.forEach(os => {
+  const div = document.createElement("div");
+  div.className = "scroll-reveal";
+  div.innerHTML = `<span class="prompt">$</span> <span class="dim">${os.context} &nbsp;·&nbsp; ${os.value}</span>`;
+  osListEl.appendChild(div);
+});
+
+// Uptime clock
+const _t0 = Date.now();
+function tickClock(){
+  const e = Date.now() - _t0;
+  const h = String(Math.floor(e/3600000)).padStart(2,"0");
+  const m = String(Math.floor(e%3600000/60000)).padStart(2,"0");
+  const s = String(Math.floor(e%60000/1000)).padStart(2,"0");
+  document.getElementById("clock").textContent = h+":"+m+":"+s;
+}
+tickClock(); setInterval(tickClock, 1000);
+
+// Typed terminal
+const bootLines = [
+  "$ whoami",
+  IDENTITY.handle,
+  "$ cat ./about.md",
+  IDENTITY.bio,
+  "$ ls ./socials/",
+  SOCIALS.map(s => s.label.toLowerCase()).join("  "),
+];
+const termBody = document.getElementById("term-body");
+function render(lines, done){
+  termBody.innerHTML = "";
+  lines.forEach((line, i) => {
+    const div = document.createElement("div");
+    if (line.startsWith("$")) {
+      div.innerHTML = `<span class="prompt">$</span><span>${line.slice(1).replace(/</g,"&lt;")}</span>`;
+    } else {
+      div.innerHTML = `<span class="dim">${line.replace(/</g,"&lt;")}</span>`;
+    }
+    if (i === lines.length - 1 && !done) {
+      const caret = document.createElement("span");
+      caret.className = "caret"; div.appendChild(caret);
+    }
+    termBody.appendChild(div);
+  });
+}
+(function typeIt(){
+  let li = 0, ci = 0; const buf = [""];
+  render(buf, false);
+  function tick(){
+    const line = bootLines[li];
+    if (ci < line.length) { buf[li] = line.slice(0, ++ci); render(buf, false); setTimeout(tick, 28 + Math.random()*40); }
+    else { li++; if (li < bootLines.length) { buf.push(""); ci = 0; setTimeout(tick, 700); } else { render(buf, true); } }
+  }
+  setTimeout(tick, 300);
+})();
+
+// Matrix rain
+(function matrix(){
+  const canvas = document.getElementById("matrix");
+  const ctx = canvas.getContext("2d");
+  const chars = "アイウエオカキクケコｱｲｳｴｵ01<>[]{}#$/*+-".split("");
+  const fontSize = 14;
+  let W=0,H=0,drops=[];
+  function resize(){
+    W = canvas.width = window.innerWidth; H = canvas.height = window.innerHeight;
+    const cols = Math.floor(W / fontSize);
+    drops = new Array(cols).fill(0).map(()=>Math.random()*-100);
+  }
+  resize(); window.addEventListener("resize", resize);
+  (function draw(){
+    ctx.fillStyle = "rgba(10,5,5,0.08)"; ctx.fillRect(0,0,W,H);
+    ctx.font = fontSize + "px JetBrains Mono, monospace";
+    for (let i=0;i<drops.length;i++){
+      const t = chars[Math.floor(Math.random()*chars.length)];
+      const x = i*fontSize, y = drops[i]*fontSize;
+      ctx.fillStyle = Math.random()>0.975 ? "rgba(255,120,120,0.9)" : "rgba(200,30,40,0.55)";
+      ctx.fillText(t, x, y);
+      if (y > H && Math.random()>0.975) drops[i] = 0;
+      drops[i] += 0.5 + Math.random()*0.5;
+    }
+    requestAnimationFrame(draw);
+  })();
+})();
+
+// ── Phase 2 effects ──────────────────────────────────────────────────────
+const _rmq = window.matchMedia("(prefers-reduced-motion:reduce)");
+const _fine = window.matchMedia("(pointer:fine)");
+
+// 1. Scroll-reveal
+(function(){
+  if(_rmq.matches) return;
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if(e.isIntersecting){ e.target.classList.add("float"); obs.unobserve(e.target); }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll(".scroll-reveal").forEach(el => obs.observe(el));
+})();
+
+// 2. Tile tilt
+(function(){
+  if(_rmq.matches || !_fine.matches) return;
+  document.querySelectorAll(".tile").forEach(tile => {
+    let tx=0,ty=0,cx=0,cy=0,raf=null;
+    function lerp(){
+      cx+=(tx-cx)*0.15; cy+=(ty-cy)*0.15;
+      tile.style.transform="perspective(600px) rotateX("+(-cy)+"deg) rotateY("+cx+"deg)";
+      if(Math.abs(tx-cx)>0.01||Math.abs(ty-cy)>0.01) raf=requestAnimationFrame(lerp);
+      else raf=null;
+    }
+    tile.addEventListener("mousemove",e=>{
+      const r=tile.getBoundingClientRect();
+      tx=((e.clientX-r.left)/r.width-0.5)*6;
+      ty=((e.clientY-r.top)/r.height-0.5)*-6;
+      if(!raf) raf=requestAnimationFrame(lerp);
+    });
+    tile.addEventListener("mouseleave",()=>{tx=0;ty=0;if(!raf)raf=requestAnimationFrame(lerp);});
+  });
+})();
+
+// 3. Cursor glow
+(function(){
+  if(_rmq.matches || !_fine.matches) return;
+  const g=document.createElement("div");
+  g.className="cursor-glow"; document.body.appendChild(g);
+  let mx=-200,my=-200,cx=-200,cy=-200,raf=null;
+  function lerp(){
+    cx+=(mx-cx)*0.08; cy+=(my-cy)*0.08;
+    g.style.left=cx+"px"; g.style.top=cy+"px"; g.style.opacity="1";
+    raf=requestAnimationFrame(lerp);
+  }
+  document.addEventListener("mousemove",e=>{mx=e.clientX;my=e.clientY;if(!raf)raf=requestAnimationFrame(lerp);});
+})();
+</script>
+</body>
+</html>
