@@ -10,8 +10,9 @@
 $ whoami
 ```
 
-> Forensic Science student @ NFSU · pivoting hard into cybersecurity.
+> Forensic Science student @ NFSU, Agartala — pivoting hard into offensive security.
 > I build tools at the intersection of digital forensics, cryptography, and the terminal.
+> Currently grinding CTFs and working through eJPT → PNPT → OSCP.
 > Self-hosted. Privacy-first. Anti-bloat.
 
 ---
@@ -40,7 +41,7 @@ $ cat stack.txt
 
 **Domains**
 
-`Digital Forensics` · `Cryptography` · `CTF` · `OSINT` · `Reverse Engineering`
+`Digital Forensics` · `Cryptography` · `Post-Quantum Cryptography` · `CTF` · `OSINT` · `Reverse Engineering` · `Hardware Hacking`
 
 ---
 
@@ -50,11 +51,21 @@ $ ls -la projects/
 
 | name | description | stack |
 |------|-------------|-------|
-| **[waveform-ink](https://github.com/distortedteen/waveform-ink)** | Terminal waveform renderer — audio meets ASCII | Python |
-| **[chronicle](https://github.com/distortedteen/chronicle)** | CLI logbook for makers and builders | Python · Typer · Textual |
-| **[camascii](https://github.com/distortedteen/camascii)** | Terminal ASCII renderer with audio-reactive mode & glitch effects | Python |
-| **[spark-print-automation](https://github.com/distortedteen/spark-print-automation)** | Campus printing system with token queue and UPI integration | HTML · Python |
-| **[simple_keylogger](https://github.com/distortedteen/simple_keylogger)** | Minimal keylogger — learning exercise, nothing sinister | Python |
+| **[waveform-ink](https://github.com/profm0r14rty/waveform-ink)** | Terminal waveform renderer — audio meets ASCII | Python |
+| **[chronicle](https://github.com/profm0r14rty/chronicle)** | CLI logbook for makers and builders | Python · Typer · Textual |
+| **[camascii](https://github.com/profm0r14rty/camascii)** | Terminal ASCII renderer with audio-reactive mode & glitch effects | Python |
+| **[spark-print-automation](https://github.com/profm0r14rty/spark-print-automation)** | Campus printing system with token queue and UPI integration | HTML · Python |
+| **[simple_keylogger](https://github.com/profm0r14rty/simple_keylogger)** | Minimal keylogger — learning exercise, nothing sinister | Python |
+
+---
+
+```bash
+$ cat currently.txt
+```
+
+> `CTF_PREP`   — 63-day roadmap, category-rotation drills → institutional CTF, Sept 2026 · team lead
+> `CERT_PATH`  — eJPT → PNPT → OSCP
+> `BUILDING`   — SAAKSHI (digital forensics evidence mgmt) · QUANTRAKSHA (post-quantum crypto audit) · SENTINEL (ICS/SCADA SOC dashboard) · MUKT (decentralized P2P comms)
 
 ---
 
@@ -64,15 +75,15 @@ $ cat /proc/stats
 
 <div align="center">
 
-<img src="https://github-readme-stats.vercel.app/api?username=distortedteen&theme=tokyonight&hide_border=true&include_all_commits=true&count_private=true&show_icons=true&cache_seconds=86400" height="160"/>
+<img src="https://github-readme-stats.vercel.app/api?username=profm0r14rty&theme=tokyonight&hide_border=true&include_all_commits=true&count_private=true&show_icons=true&cache_seconds=86400" height="160"/>
 &nbsp;
-<img src="https://github-readme-stats.vercel.app/api/top-langs/?username=distortedteen&theme=tokyonight&hide_border=true&layout=compact&count_private=true&cache_seconds=86400" height="160"/>
+<img src="https://github-readme-stats.vercel.app/api/top-langs/?username=profm0r14rty&theme=tokyonight&hide_border=true&layout=compact&count_private=true&cache_seconds=86400" height="160"/>
 
 </div>
 
 <div align="center">
 
-<img src="https://streak-stats.demolab.com/?user=distortedteen&theme=tokyonight&hide_border=true&cache_seconds=86400" />
+<img src="https://streak-stats.demolab.com/?user=profm0r14rty&theme=tokyonight&hide_border=true&cache_seconds=86400" />
 
 </div>
 
