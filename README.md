@@ -41,7 +41,7 @@ $ cat stack.txt
 
 **Domains**
 
-`Digital Forensics` · `Cryptography` · `Post-Quantum Cryptography` · `CTF` · `OSINT` · `Reverse Engineering` · `Hardware Hacking`
+`Digital Forensics` · `Cryptography` · `Web Application Security` · `CTF` · `OSINT` · `Reverse Engineering` · `Hardware Security`
 
 ---
 
@@ -63,9 +63,9 @@ $ ls -la projects/
 $ cat currently.txt
 ```
 
-> `CTF_PREP`   — 63-day roadmap, category-rotation drills → institutional CTF, Sept 2026 · team lead
+> `CTF_PREP`   — following roadmap, category-rotation drills → upcoming CTF, Sept 2026 · team lead
 > `CERT_PATH`  — eJPT → PNPT → OSCP
-> `BUILDING`   — SAAKSHI (digital forensics evidence mgmt) · QUANTRAKSHA (post-quantum crypto audit) · SENTINEL (ICS/SCADA SOC dashboard) · MUKT (decentralized P2P comms)
+> `BUILDING`   — an SSH server hosted on cloud VPS server. work ongoing.
 
 ---
 
@@ -95,8 +95,9 @@ $ cat /etc/os-release
 
 ```
 DAILY    → CachyOS + Hyprland
-LABWORK  → Kali Linux
+LABWORK  → Kali Linux + i3wm
 WEEKEND  → Arch · Gentoo · NixOS  (when I want to suffer productively)
+PARANOID MODE  → TailsOS (to become invisible)
 ```
 
 ---
