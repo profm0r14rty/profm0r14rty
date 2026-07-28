@@ -75,9 +75,9 @@ $ cat /proc/stats
 
 <div align="center">
 
-<img src="https://github-readme-stats.vercel.app/api?username=profm0r14rty&theme=tokyonight&hide_border=true&include_all_commits=true&count_private=true&show_icons=true&cache_seconds=86400" height="160"/>
+<img src="https://github-readme-stats.vercel.app/api?username=profm0r14rty&theme=tokyonight&hide_border=true&include_all_commits=true&count_private=true&show_icons=true&cache_seconds=1800" height="160"/>
 &nbsp;
-<img src="https://github-readme-stats.vercel.app/api/top-langs/?username=profm0r14rty&theme=tokyonight&hide_border=true&layout=compact&count_private=true&cache_seconds=86400" height="160"/>
+<img src="https://github-readme-stats.vercel.app/api/top-langs/?username=profm0r14rty&theme=tokyonight&hide_border=true&layout=compact&count_private=true&cache_seconds=1800" height="160"/>
 
 </div>
 
