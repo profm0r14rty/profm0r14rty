@@ -10,7 +10,7 @@
 $ whoami
 ```
 
-> Forensic Science student @ NFSU, Agartala — pivoting hard into offensive security.
+> Forensic Science student @ NFSU — pivoting hard into offensive security.
 > I build tools at the intersection of digital forensics, cryptography, and the terminal.
 > Currently grinding CTFs and working through eJPT → PNPT → OSCP.
 > Self-hosted. Privacy-first. Anti-bloat.
