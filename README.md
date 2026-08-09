@@ -94,7 +94,7 @@ $ cat /etc/os-release
 ```
 
 ```
-DAILY    → CachyOS + Hyprland
+DAILY    → CachyOS + bspwm
 LABWORK  → Kali Linux + i3wm
 WEEKEND  → Arch · Gentoo · NixOS  (when I want to suffer productively)
 PARANOID MODE  → TailsOS (to become invisible)
