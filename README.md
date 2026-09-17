@@ -14,7 +14,7 @@ $ whoami
 > I build tools at the intersection of digital forensics, cryptography, and the terminal.
 > Currently grinding CTFs and working through eJPT → PNPT → OSCP.
 > Self-hosted. Privacy-first. Anti-bloat.
-> 💼 Available for freelance work — Full-Stack Development & Cybersecurity Consulting.
+> Available for freelance work — Full-Stack Development, Cybersecurity Consulting and Penetration Testing.
 
 ---
 
