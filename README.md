@@ -118,7 +118,7 @@ PARANOID MODE  → TailsOS (to become invisible)
 
 ![footer](https://capsule-render.vercel.app/api?type=blur&color=0:1a1a2e,50:0f2027,100:0d1117&height=100&section=footer)
 
-*"The quieter you become, the more you can hear."*
+*"Chaos Reigns."*
 
 [![X](https://img.shields.io/badge/X-000000?style=flat-square&logo=x&logoColor=white)](https://x.com/PratyayM_03)
 
