@@ -63,7 +63,7 @@ $ ls -la projects/
 
 | name | description | stack |
 |------|-------------|-------|
-| **[waveform-ink](https://github.com/profm0r14rty/waveform-ink)** | Terminal waveform renderer — audio meets ASCII | Python |
+| **[ECDAT](https://github.com/profm0r14rty/ECDAT)** | Enterprise Cryptographic Discovery & Analysis Tool | Python |
 | **[chronicle](https://github.com/profm0r14rty/chronicle)** | CLI logbook for makers and builders | Python · Typer · Textual |
 | **[camascii](https://github.com/profm0r14rty/camascii)** | Terminal ASCII renderer with audio-reactive mode & glitch effects | Python |
 | **[spark-print-automation](https://github.com/profm0r14rty/spark-print-automation)** | Campus printing system with token queue and UPI integration | HTML · Python |
